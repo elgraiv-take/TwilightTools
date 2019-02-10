@@ -1,0 +1,146 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:Elgraiv.TwilightTools.Themes.Controls"
+    xmlns:root="clr-namespace:Elgraiv.TwilightTools">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Button.xaml" />
+        <ResourceDictionary Source="../TwilightColors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <Style x:Key="TwilightWindow" TargetType="{x:Type Window}">
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome
+                    CaptionHeight="36"
+                    ResizeBorderThickness="8"
+                    UseAeroCaptionButtons="False" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="root:TwilightWindow.HeaderBackground" Value="{DynamicResource TwilightWindowHeaderBackgroundBrushKey}" />
+        <Setter Property="root:TwilightWindow.HeaderForeground" Value="{DynamicResource TwilightWindowHeaderForegroundBrushKey}" />
+        <Setter Property="Background" Value="{DynamicResource TwilightBackgroundBrushKey}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <Border
+                        x:Name="Border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="Transparent">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="36" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid Background="{TemplateBinding root:TwilightWindow.HeaderBackground}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <ContentControl
+                                    MinWidth="36"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    Content="{TemplateBinding root:TwilightWindow.WindowIcon}"
+                                    Foreground="{TemplateBinding root:TwilightWindow.HeaderForeground}" />
+                                <ContentControl
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    VerticalContentAlignment="Stretch"
+                                    Content="{TemplateBinding Title}"
+                                    Foreground="{TemplateBinding root:TwilightWindow.HeaderForeground}" />
+                                <Button
+                                    Grid.Column="2"
+                                    Width="36"
+                                    Height="18"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Background="{TemplateBinding root:TwilightWindow.HeaderBackground}"
+                                    Content="r"
+                                    Foreground="{TemplateBinding root:TwilightWindow.HeaderForeground}"
+                                    Style="{StaticResource WindowSystemButton}">
+                                    <i:Interaction.Behaviors>
+                                        <root:WindowCloseButtonBehavior />
+                                    </i:Interaction.Behaviors>
+                                </Button>
+                                <Button
+                                    x:Name="MaximazeButton"
+                                    Grid.Column="2"
+                                    Width="36"
+                                    Height="18"
+                                    Margin="0,0,36,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Background="{TemplateBinding root:TwilightWindow.HeaderBackground}"
+                                    Content="1"
+                                    Foreground="{TemplateBinding root:TwilightWindow.HeaderForeground}"
+                                    Style="{StaticResource WindowSystemButton}">
+                                    <i:Interaction.Behaviors>
+                                        <root:WindowMaximazeButtonBehavior />
+                                    </i:Interaction.Behaviors>
+                                </Button>
+                                <Button
+                                    x:Name="RestoreButton"
+                                    Grid.Column="2"
+                                    Width="36"
+                                    Height="18"
+                                    Margin="0,0,36,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Background="{TemplateBinding root:TwilightWindow.HeaderBackground}"
+                                    Content="2"
+                                    Foreground="{TemplateBinding root:TwilightWindow.HeaderForeground}"
+                                    Style="{StaticResource WindowSystemButton}">
+                                    <i:Interaction.Behaviors>
+                                        <root:WindowRestoreButtonBehavior />
+                                    </i:Interaction.Behaviors>
+                                </Button>
+                                <Button
+                                    x:Name="MinimizeButton"
+                                    Grid.Column="2"
+                                    Width="36"
+                                    Height="18"
+                                    Margin="0,0,72,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Background="{TemplateBinding root:TwilightWindow.HeaderBackground}"
+                                    Content="0"
+                                    Foreground="{TemplateBinding root:TwilightWindow.HeaderForeground}"
+                                    Style="{StaticResource WindowSystemButton}">
+                                    <i:Interaction.Behaviors>
+                                        <root:WindowMinimizeButtonBehavior />
+                                    </i:Interaction.Behaviors>
+                                </Button>
+                            </Grid>
+                            <ContentPresenter Grid.Row="1" />
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="WindowState" Value="Maximized">
+                            <Setter TargetName="Border" Property="BorderThickness" Value="8" />
+                            <Setter TargetName="MaximazeButton" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="WindowState" Value="Normal">
+                            <Setter TargetName="Border" Property="BorderThickness" Value="0" />
+                            <Setter TargetName="RestoreButton" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="NoResize">
+                            <Setter TargetName="MaximazeButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="RestoreButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="MinimizeButton" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="ResizeMode" Value="CanMinimize">
+                            <Setter TargetName="MaximazeButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="RestoreButton" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="MinimizeButton" Property="Margin" Value="0,0,36,0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

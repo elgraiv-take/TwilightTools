@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Elgraiv.TwilightTools.Themes">
+    <SolidColorBrush x:Key="TwilightBorderBrushKey" Color="#FF777989"></SolidColorBrush>
+    <SolidColorBrush x:Key="TwilightBackgroundBrushKey" Color="#FF16193A"></SolidColorBrush>
+    <SolidColorBrush x:Key="TwilightForegroundBrushKey" Color="#FFE4E4E4"></SolidColorBrush>
+    <SolidColorBrush x:Key="TwilightMouseOrverBorderBrushKey" Color="#FF6A8AFF"></SolidColorBrush>
+    <SolidColorBrush x:Key="TwilightPressedBorderBrushKey" Color="#FF2140AE"></SolidColorBrush>
+    
+    <SolidColorBrush x:Key="TwilightWindowHeaderBackgroundBrushKey" Color="#FF16193A"></SolidColorBrush>
+    <SolidColorBrush x:Key="TwilightWindowHeaderForegroundBrushKey" Color="#FFE4E4E4"></SolidColorBrush>
+</ResourceDictionary>
