@@ -108,6 +108,7 @@
                                     VerticalAlignment="Top"
                                     Background="{TemplateBinding root:TwilightWindow.HeaderBackground}"
                                     Content="0"
+                                    root:TwilightControl.CornerRadius="0,0,0,4"
                                     Foreground="{TemplateBinding root:TwilightWindow.HeaderForeground}"
                                     Style="{StaticResource WindowSystemButton}">
                                     <i:Interaction.Behaviors>

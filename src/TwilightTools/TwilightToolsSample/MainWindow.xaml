@@ -5,18 +5,34 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:TwilightToolsSample"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:twilight="http://schemas.elgraiv.com/TwilightTools"
     Title="MainWindow"
     Width="800"
     Height="450"
     Style="{StaticResource TwilightWindow}"
     mc:Ignorable="d">
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
+    <i:Interaction.Behaviors>
+        <twilight:ShowDialogBehavior Messenger="{Binding}"></twilight:ShowDialogBehavior>
+    </i:Interaction.Behaviors>
     <Grid>
         <Button
             Width="75"
             Margin="10,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            Command="{Binding Path=ShowDialogCommand}"
             Content="Button" />
+        <Button
+            Width="75"
+            Margin="10,33,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Button"
+            IsEnabled="False" />
 
     </Grid>
 </Window>

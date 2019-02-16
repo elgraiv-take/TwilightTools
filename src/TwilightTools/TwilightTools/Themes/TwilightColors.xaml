@@ -6,6 +6,8 @@
     <SolidColorBrush x:Key="TwilightForegroundBrushKey" Color="#FFE4E4E4"></SolidColorBrush>
     <SolidColorBrush x:Key="TwilightMouseOrverBorderBrushKey" Color="#FF6A8AFF"></SolidColorBrush>
     <SolidColorBrush x:Key="TwilightPressedBorderBrushKey" Color="#FF2140AE"></SolidColorBrush>
+    <SolidColorBrush x:Key="TwilightDisabledForegroundBrushKey" Color="#FF757889"></SolidColorBrush>
+    <SolidColorBrush x:Key="TwilightDisabledBorderBrushKey" Color="#FF4B4F6A"></SolidColorBrush>
     
     <SolidColorBrush x:Key="TwilightWindowHeaderBackgroundBrushKey" Color="#FF16193A"></SolidColorBrush>
     <SolidColorBrush x:Key="TwilightWindowHeaderForegroundBrushKey" Color="#FFE4E4E4"></SolidColorBrush>

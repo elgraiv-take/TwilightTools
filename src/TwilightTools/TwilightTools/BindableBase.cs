@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Elgraiv.TwilightTools
 {
-    public class BindableBase : INotifyPropertyChanged
+    public abstract class BindableBase : INotifyPropertyChanged
     {
 
         protected bool SetProperty<T>(ref T storage,T value, [CallerMemberName] string name = "")

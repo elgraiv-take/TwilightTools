@@ -49,6 +49,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BindableBase.cs" />
+    <Compile Include="Common\MessageDialogView.xaml.cs">
+      <DependentUpon>MessageDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\MessageDialogViewModel.cs" />
+    <Compile Include="DelegateCommand.cs" />
+    <Compile Include="IDialogViewModel.cs" />
+    <Compile Include="INotifyMessageSent.cs" />
+    <Compile Include="Interactivity\ShowDialogBehavior.cs" />
+    <Compile Include="Interactivity\SizeToContentBehavior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -62,7 +71,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="TwilightControl.cs" />
     <Compile Include="TwilightWindow.cs" />
+    <Compile Include="Views\DialogWindow.xaml.cs">
+      <DependentUpon>DialogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowButtonBehavior.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -75,6 +88,14 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Common\MessageDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\CommonDataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Controls\Button.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -88,6 +109,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\TwilightTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

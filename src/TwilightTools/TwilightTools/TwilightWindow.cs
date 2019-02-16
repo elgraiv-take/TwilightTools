@@ -61,5 +61,28 @@ namespace Elgraiv.TwilightTools
         {
             obj.SetValue(HeaderBackgroundProperty, value);
         }
+
+        public static readonly DependencyProperty DialogResultProperty = DependencyProperty.RegisterAttached(
+            "DialogResult",
+            typeof(bool?),
+            typeof(TwilightWindow),
+            new PropertyMetadata(null, OnDialogResultChanged));
+
+        public static bool GetDialogResult(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(DialogResultProperty);
+        }
+        public static void SetDialogResult(DependencyObject obj, bool value)
+        {
+            obj.SetValue(DialogResultProperty, value);
+        }
+
+        private static void OnDialogResultChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (sender is Window window)
+            {
+                window.DialogResult = GetDialogResult(window);
+            }
+        }
     }
 }

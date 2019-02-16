@@ -1,0 +1,24 @@
+﻿<Window
+    x:Class="Elgraiv.TwilightTools.Views.DialogWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:Elgraiv.TwilightTools.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:root="clr-namespace:Elgraiv.TwilightTools"
+    xmlns:ti="clr-namespace:Elgraiv.TwilightTools.Interactivity"
+    Title="{Binding Path=Title}"
+    root:TwilightWindow.DialogResult="{Binding Path=DialogResult}"
+    Foreground="{DynamicResource TwilightForegroundBrushKey}"
+    ResizeMode="NoResize"
+    Style="{StaticResource TwilightWindow}"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary Source="../Themes/Controls/Window.xaml" />
+    </Window.Resources>
+    <i:Interaction.Behaviors>
+        <ti:SizeToContentBehavior />
+    </i:Interaction.Behaviors>
+    <ContentControl Content="{Binding}" />
+</Window>
