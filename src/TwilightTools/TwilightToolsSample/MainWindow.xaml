@@ -3,11 +3,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:TwilightToolsSample"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:twilight="http://schemas.elgraiv.com/TwilightTools"
-    Title="MainWindow"
+    Title="TwilightTools Sample"
     Width="800"
     Height="450"
     Style="{StaticResource TwilightWindow}"
@@ -16,7 +16,7 @@
         <local:MainWindowViewModel />
     </Window.DataContext>
     <i:Interaction.Behaviors>
-        <twilight:ShowDialogBehavior Messenger="{Binding}"></twilight:ShowDialogBehavior>
+        <twilight:ShowDialogBehavior Messenger="{Binding}" />
     </i:Interaction.Behaviors>
     <Grid>
         <Button
@@ -33,6 +33,12 @@
             VerticalAlignment="Top"
             Content="Button"
             IsEnabled="False" />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,56,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <ListBox HorizontalAlignment="Left" Height="100" Margin="10,84,0,0" VerticalAlignment="Top" Width="100">
+            <ListBoxItem Content="Item1"/>
+            <ListBoxItem Content="Item2"/>
+            <ListBoxItem Content="Item3"/>
+        </ListBox>
 
     </Grid>
 </Window>

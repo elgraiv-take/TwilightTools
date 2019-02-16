@@ -25,5 +25,22 @@ namespace Elgraiv.TwilightTools
         {
             obj.SetValue(CornerRadiusProperty, value);
         }
+
+        public static readonly DependencyProperty ContentMarginProperty =
+           DependencyProperty.RegisterAttached(
+               "ContentMargin",
+               typeof(Thickness),
+               typeof(TwilightControl),
+               new PropertyMetadata(new Thickness(0.0)));
+
+        public static Thickness GetContentMargin(DependencyObject obj)
+        {
+            return (Thickness)obj.GetValue(ContentMarginProperty);
+        }
+
+        public static void SetContentMargin(DependencyObject obj, Thickness value)
+        {
+            obj.SetValue(ContentMarginProperty, value);
+        }
     }
 }

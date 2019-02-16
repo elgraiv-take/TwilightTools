@@ -53,6 +53,7 @@
       <DependentUpon>MessageDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\MessageDialogViewModel.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="IDialogViewModel.cs" />
     <Compile Include="INotifyMessageSent.cs" />
@@ -97,6 +98,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Controls\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Controls\ListBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Controls\TextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

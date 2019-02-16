@@ -6,37 +6,33 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../TwilightColors.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <Style TargetType="{x:Type Button}">
+    <Style TargetType="{x:Type TextBox}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="Background" Value="{DynamicResource TwilightBackgroundBrushKey}" />
+        <Setter Property="Background" Value="{DynamicResource TwilightAltBackgroundBrushKey}" />
         <Setter Property="BorderBrush" Value="{DynamicResource TwilightBorderBrushKey}" />
         <Setter Property="Foreground" Value="{DynamicResource TwilightForegroundBrushKey}" />
-        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CaretBrush" Value="{DynamicResource TwilightForegroundBrushKey}" />
         <Setter Property="root:TwilightControl.CornerRadius" Value="0" />
         <Setter Property="root:TwilightControl.ContentMargin" Value="0" />
-        <Setter Property="Height" Value="20" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
+                <ControlTemplate TargetType="{x:Type TextBox}">
                     <Border
                         x:Name="Border"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderThickness="1"
                         CornerRadius="{TemplateBinding root:TwilightControl.CornerRadius}"
                         TextBlock.Foreground="{TemplateBinding Foreground}">
-                        <ContentPresenter
-                            Margin="{TemplateBinding root:TwilightControl.ContentMargin}"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center" />
+                        <ScrollViewer
+                            x:Name="PART_ContentHost"
+                            root:TwilightControl.ContentMargin="{TemplateBinding root:TwilightControl.ContentMargin}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource TwilightMouseOrverBorderBrushKey}" />
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource TwilightMouseOrverBorderBrushKey}" />
-                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource TwilightPressedBackgroundBrushKey}" />
+                        <Trigger Property="IsReadOnly" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource TwilightBackgroundBrushKey}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="Border" Property="TextBlock.Foreground" Value="{DynamicResource TwilightDisabledForegroundBrushKey}" />
@@ -47,11 +43,5 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style
-        x:Key="WindowSystemButton"
-        BasedOn="{StaticResource {x:Type Button}}"
-        TargetType="{x:Type Button}">
-        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
-        <Setter Property="FontFamily" Value="Marlett" />
-    </Style>
+
 </ResourceDictionary>

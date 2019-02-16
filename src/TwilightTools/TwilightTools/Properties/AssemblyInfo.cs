@@ -11,7 +11,7 @@ using System.Windows.Markup;
 [assembly: AssemblyTitle("TwilightTools")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Elgraiv")]
 [assembly: AssemblyProduct("TwilightTools")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
@@ -58,3 +58,4 @@ using System.Windows.Markup;
 [assembly: XmlnsPrefix("http://schemas.elgraiv.com/TwilightTools","twilight")]
 [assembly: XmlnsDefinition("http://schemas.elgraiv.com/TwilightTools", "Elgraiv.TwilightTools")]
 [assembly: XmlnsDefinition("http://schemas.elgraiv.com/TwilightTools", "Elgraiv.TwilightTools.Interactivity")]
+[assembly: XmlnsDefinition("http://schemas.elgraiv.com/TwilightTools", "Elgraiv.TwilightTools.Converters")]

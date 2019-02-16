@@ -2,13 +2,17 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Elgraiv.TwilightTools.Themes">
     <SolidColorBrush x:Key="TwilightBorderBrushKey" Color="#FF777989"></SolidColorBrush>
-    <SolidColorBrush x:Key="TwilightBackgroundBrushKey" Color="#FF16193A"></SolidColorBrush>
+    <SolidColorBrush x:Key="TwilightBackgroundBrushKey" Color="#FF1F2136"></SolidColorBrush>
+    <SolidColorBrush x:Key="TwilightAltBackgroundBrushKey" Color="#FF262A44"></SolidColorBrush>
     <SolidColorBrush x:Key="TwilightForegroundBrushKey" Color="#FFE4E4E4"></SolidColorBrush>
     <SolidColorBrush x:Key="TwilightMouseOrverBorderBrushKey" Color="#FF6A8AFF"></SolidColorBrush>
-    <SolidColorBrush x:Key="TwilightPressedBorderBrushKey" Color="#FF2140AE"></SolidColorBrush>
+    <SolidColorBrush x:Key="TwilightPressedBackgroundBrushKey" Color="#FF2140AE"></SolidColorBrush>
     <SolidColorBrush x:Key="TwilightDisabledForegroundBrushKey" Color="#FF757889"></SolidColorBrush>
     <SolidColorBrush x:Key="TwilightDisabledBorderBrushKey" Color="#FF4B4F6A"></SolidColorBrush>
+    <SolidColorBrush x:Key="TwilightMouseOrverItemBackgroundBrushKey" Color="#FF3C4A89"></SolidColorBrush>
+    <SolidColorBrush x:Key="TwilightSelectedItemBackgroundBrushKey" Color="#FF1E419E"></SolidColorBrush>
+    <SolidColorBrush x:Key="TwilightSelectedUnfocusedItemBackgroundBrushKey" Color="#FF5E6793"></SolidColorBrush>
     
-    <SolidColorBrush x:Key="TwilightWindowHeaderBackgroundBrushKey" Color="#FF16193A"></SolidColorBrush>
+    <SolidColorBrush x:Key="TwilightWindowHeaderBackgroundBrushKey" Color="#FF2C2F4F"></SolidColorBrush>
     <SolidColorBrush x:Key="TwilightWindowHeaderForegroundBrushKey" Color="#FFE4E4E4"></SolidColorBrush>
 </ResourceDictionary>

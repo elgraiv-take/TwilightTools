@@ -46,6 +46,13 @@ namespace Elgraiv.TwilightTools.Common
         public ICommand AcceptCommand { get; }
         public ICommand RejectCommand { get; }
 
+        private bool _isOkOnly = false;
+        public bool IsOkOnly
+        {
+            get => _isOkOnly;
+            set => SetProperty(ref _isOkOnly, value);
+        }
+
         public MessageDialogViewModel()
         {
             AcceptCommand = new DelegateCommand(() => DialogResult = true);

@@ -22,12 +22,13 @@ namespace TwilightToolsSample
 
         private void ShowDialog()
         {
-            NotifyDialogMessageSent?.Invoke(this, new DialogMessageEventArgs(
-                new MessageDialogViewModel() {
-                    Title = "SampleDialog",
-                    Message="SampleMessage\nDummyDumy"
-                }
-                ));
+            var dialogViewModel = new MessageDialogViewModel()
+            {
+                Title = "SampleDialog",
+                Message = "SampleMessage\nDummyDumy",
+                IsOkOnly = true,
+            };
+            NotifyDialogMessageSent?.Invoke(this, new DialogMessageEventArgs(dialogViewModel));
         }
     }
 }
