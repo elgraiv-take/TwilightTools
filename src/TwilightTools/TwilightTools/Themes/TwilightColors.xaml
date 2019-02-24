@@ -1,18 +1,45 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Elgraiv.TwilightTools.Themes">
-    <SolidColorBrush x:Key="TwilightBorderBrushKey" Color="#FF777989"></SolidColorBrush>
-    <SolidColorBrush x:Key="TwilightBackgroundBrushKey" Color="#FF1F2136"></SolidColorBrush>
-    <SolidColorBrush x:Key="TwilightAltBackgroundBrushKey" Color="#FF262A44"></SolidColorBrush>
-    <SolidColorBrush x:Key="TwilightForegroundBrushKey" Color="#FFE4E4E4"></SolidColorBrush>
-    <SolidColorBrush x:Key="TwilightMouseOrverBorderBrushKey" Color="#FF6A8AFF"></SolidColorBrush>
-    <SolidColorBrush x:Key="TwilightPressedBackgroundBrushKey" Color="#FF2140AE"></SolidColorBrush>
-    <SolidColorBrush x:Key="TwilightDisabledForegroundBrushKey" Color="#FF757889"></SolidColorBrush>
-    <SolidColorBrush x:Key="TwilightDisabledBorderBrushKey" Color="#FF4B4F6A"></SolidColorBrush>
-    <SolidColorBrush x:Key="TwilightMouseOrverItemBackgroundBrushKey" Color="#FF3C4A89"></SolidColorBrush>
-    <SolidColorBrush x:Key="TwilightSelectedItemBackgroundBrushKey" Color="#FF1E419E"></SolidColorBrush>
-    <SolidColorBrush x:Key="TwilightSelectedUnfocusedItemBackgroundBrushKey" Color="#FF5E6793"></SolidColorBrush>
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Elgraiv.TwilightTools.Themes">
+
+
+    <!-- Foreground -->
+    <Color x:Key="TwilightForegroundColor">#FFE4E4E4</Color>
+    <Color x:Key="TwilightDisabledForegrounddColor">#FF757889</Color>
     
-    <SolidColorBrush x:Key="TwilightWindowHeaderBackgroundBrushKey" Color="#FF2C2F4F"></SolidColorBrush>
-    <SolidColorBrush x:Key="TwilightWindowHeaderForegroundBrushKey" Color="#FFE4E4E4"></SolidColorBrush>
+    <SolidColorBrush x:Key="TwilightForegroundBrushKey" Color="{StaticResource TwilightForegroundColor}" />
+    <SolidColorBrush x:Key="TwilightDisabledForegroundBrushKey" Color="{StaticResource TwilightDisabledForegrounddColor}" />
+
+    <!-- Background -->
+    <Color x:Key="TwilightBackgroundColor">#FF1F2136</Color>
+    <Color x:Key="TwilightAltBackgroundColor">#FF262A44</Color>
+    <Color x:Key="TwilightPressedBackgroundColor">#FF2140AE</Color>
+
+    <SolidColorBrush x:Key="TwilightBackgroundBrushKey" Color="{StaticResource TwilightBackgroundColor}" />
+    <SolidColorBrush x:Key="TwilightAltBackgroundBrushKey" Color="{StaticResource TwilightAltBackgroundColor}" />
+    <SolidColorBrush x:Key="TwilightPressedBackgroundBrushKey" Color="{StaticResource TwilightPressedBackgroundColor}" />
+
+    <Color x:Key="TwilightMouseOrverItemBackgroundColor">#FF3C4A89</Color>
+    <Color x:Key="TwilightSelectedItemBackgroundColor">#FF1E419E</Color>
+    <Color x:Key="TwilightSelectedUnfocusedItemBackgroundColor">#FF5E6793</Color>
+
+    <SolidColorBrush x:Key="TwilightMouseOrverItemBackgroundBrushKey" Color="{StaticResource TwilightMouseOrverItemBackgroundColor}" />
+    <SolidColorBrush x:Key="TwilightSelectedItemBackgroundBrushKey" Color="{StaticResource TwilightSelectedItemBackgroundColor}" />
+    <SolidColorBrush x:Key="TwilightSelectedUnfocusedItemBackgroundBrushKey" Color="{StaticResource TwilightSelectedUnfocusedItemBackgroundColor}" />
+
+    <!-- Border -->
+    <Color x:Key="TwilightBorderColor">#FF777989</Color>
+    <Color x:Key="TwilightMouseOrverBorderColor">#FF6A8AFF</Color>
+    <Color x:Key="TwilightDisabledBorderColor">#FF4B4F6A</Color>
+
+    <SolidColorBrush x:Key="TwilightBorderBrushKey" Color="{StaticResource TwilightBorderColor}" />
+    <SolidColorBrush x:Key="TwilightMouseOrverBorderBrushKey" Color="{StaticResource TwilightMouseOrverBorderColor}" />
+    <SolidColorBrush x:Key="TwilightDisabledBorderBrushKey" Color="{StaticResource TwilightDisabledBorderColor}" />
+
+    <!-- Header -->
+    <Color x:Key="TwilightWindowHeaderBackgroundColor">#FF2C2F4F</Color>
+
+    <SolidColorBrush x:Key="TwilightWindowHeaderBackgroundBrushKey" Color="{StaticResource TwilightWindowHeaderBackgroundColor}" />
+    <SolidColorBrush x:Key="TwilightWindowHeaderForegroundBrushKey" Color="{StaticResource TwilightForegroundColor}" />
 </ResourceDictionary>
