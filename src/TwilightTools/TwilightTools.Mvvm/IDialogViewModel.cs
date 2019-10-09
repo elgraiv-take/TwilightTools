@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Elgraiv.TwilightTools
+namespace Elgraiv.TwilightTools.Mvvm
 {
     public interface IDialogViewModel
     {

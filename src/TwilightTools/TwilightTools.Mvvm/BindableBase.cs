@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Elgraiv.TwilightTools
+namespace Elgraiv.TwilightTools.Mvvm
 {
     public abstract class BindableBase : INotifyPropertyChanged
     {

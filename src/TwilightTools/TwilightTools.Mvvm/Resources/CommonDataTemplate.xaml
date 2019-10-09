@@ -1,9 +1,9 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:common="clr-namespace:Elgraiv.TwilightTools.Common"
+    xmlns:dialog="clr-namespace:Elgraiv.TwilightTools.Mvvm.Dialog"
     xmlns:local="clr-namespace:Elgraiv.TwilightTools.Resources">
-    <DataTemplate DataType="{x:Type common:MessageDialogViewModel}">
-        <common:MessageDialogView />
+    <DataTemplate DataType="{x:Type dialog:MessageDialogViewModel}">
+        <dialog:MessageDialogView />
     </DataTemplate>
 </ResourceDictionary>

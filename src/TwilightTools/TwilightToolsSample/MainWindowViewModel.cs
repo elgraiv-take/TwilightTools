@@ -1,10 +1,6 @@
-﻿using Elgraiv.TwilightTools;
-using Elgraiv.TwilightTools.Common;
+﻿using Elgraiv.TwilightTools.Mvvm;
+using Elgraiv.TwilightTools.Mvvm.Dialog;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace TwilightToolsSample

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 
 
-namespace Elgraiv.TwilightTools.Interactivity
+namespace Elgraiv.TwilightTools.Mvvm.Interactivity
 {
     public class ShowDialogBehavior:Behavior<UIElement>
     {

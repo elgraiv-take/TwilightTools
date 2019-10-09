@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Elgraiv.TwilightTools.Common
+namespace Elgraiv.TwilightTools.Mvvm.Dialog
 {
     /// <summary>
     /// MessageDialogView.xaml の相互作用ロジック

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Elgraiv.TwilightTools
+namespace Elgraiv.TwilightTools.Mvvm
 {
 
     public class DelegateCommand : ICommand

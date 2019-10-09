@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Elgraiv.TwilightTools.Common
+namespace Elgraiv.TwilightTools.Mvvm.Dialog
 {
     public class MessageDialogViewModel : BindableBase, IDialogViewModel
     {
