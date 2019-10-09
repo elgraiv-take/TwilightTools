@@ -27,7 +27,6 @@ namespace Elgraiv.TwilightTools
             obj.SetValue(WindowIconProperty, value);
         }
 
-
         public static readonly DependencyProperty HeaderBackgroundProperty =
         DependencyProperty.RegisterAttached(
             "HeaderBackground",

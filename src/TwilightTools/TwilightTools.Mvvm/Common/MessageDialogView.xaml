@@ -2,15 +2,14 @@
     x:Class="Elgraiv.TwilightTools.Common.MessageDialogView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converters="clr-namespace:Elgraiv.TwilightTools.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Elgraiv.TwilightTools.Common"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:root="clr-namespace:Elgraiv.TwilightTools"
+    xmlns:twilight="http://schemas.elgraiv.com/TwilightTools"
     MinWidth="200"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <converters:BoolToVisibilityConverter
+        <twilight:BoolToVisibilityConverter
             x:Key="BoolToVisibilityConverter"
             VisivilityFalse="Visible"
             VisivilityTrue="Collapsed" />
@@ -42,8 +41,8 @@
                 Margin="10,5"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
-                root:TwilightControl.ContentMargin="8,0"
-                root:TwilightControl.CornerRadius="8"
+                twilight:TwilightControl.ContentMargin="8,0"
+                twilight:TwilightControl.CornerRadius="8"
                 BorderThickness="1.5"
                 Command="{Binding Path=RejectCommand}"
                 Content="{Binding Path=RejectText}"
@@ -54,8 +53,8 @@
                 Margin="10,5"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
-                root:TwilightControl.ContentMargin="8,0"
-                root:TwilightControl.CornerRadius="8"
+                twilight:TwilightControl.ContentMargin="8,0"
+                twilight:TwilightControl.CornerRadius="8"
                 BorderThickness="1.5"
                 Command="{Binding Path=AcceptCommand}"
                 Content="{Binding Path=AcceptText}" />
