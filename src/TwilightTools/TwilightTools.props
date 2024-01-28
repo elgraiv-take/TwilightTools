@@ -1,0 +1,9 @@
+<Project>
+ <PropertyGroup>
+	 <AssemblyName>Elgraiv.$(MSBuildProjectName)</AssemblyName>
+	 <RootNamespace>Elgraiv.$(MSBuildProjectName)</RootNamespace>
+	 <TargetFramework>net8.0-windows</TargetFramework>
+	 <Nullable>enable</Nullable>
+   <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+ </PropertyGroup>
+</Project>

@@ -11,7 +11,7 @@ namespace Elgraiv.TwilightTools.Mvvm
     public abstract class BindableBase : INotifyPropertyChanged
     {
 
-        protected bool SetProperty<T>(ref T storage,T value, [CallerMemberName] string name = "")
+        protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string name = "")
         {
             if (!Equals(storage, value))
             {
@@ -26,6 +26,6 @@ namespace Elgraiv.TwilightTools.Mvvm
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

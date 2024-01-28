@@ -1,15 +1,15 @@
-﻿using Microsoft.Xaml.Behaviors;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Xaml.Behaviors;
 
 namespace Elgraiv.TwilightTools
 {
-    class WindowCloseButtonBehavior:Behavior<Button>
+    class WindowCloseButtonBehavior : Behavior<Button>
     {
         protected override void OnAttached()
         {
@@ -19,7 +19,7 @@ namespace Elgraiv.TwilightTools
 
         private void ButtonClicked(object sender, RoutedEventArgs e)
         {
-            var window=Window.GetWindow(AssociatedObject);
+            var window = Window.GetWindow(AssociatedObject);
             window.Close();
         }
 

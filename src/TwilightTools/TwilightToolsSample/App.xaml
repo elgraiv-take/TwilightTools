@@ -8,7 +8,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Elgraiv.TwilightTools;component/Themes/TwilightTheme.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Elgraiv.TwilightTools;component/Resources/CommonDataTemplate.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Elgraiv.TwilightTools.Mvvm;component/Resources/CommonDataTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

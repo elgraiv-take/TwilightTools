@@ -1,23 +1,23 @@
-﻿using Elgraiv.TwilightTools.Views;
-using Microsoft.Xaml.Behaviors;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Elgraiv.TwilightTools.Views;
+using Microsoft.Xaml.Behaviors;
 
 
 namespace Elgraiv.TwilightTools.Mvvm.Interactivity
 {
-    public class ShowDialogBehavior:Behavior<UIElement>
+    public class ShowDialogBehavior : Behavior<UIElement>
     {
         public static readonly DependencyProperty MessengerProperty =
               DependencyProperty.Register(
                   "Messenger",
                   typeof(INotifyMessageSent),
                   typeof(ShowDialogBehavior),
-                  new PropertyMetadata(null,MessengerChanged));
+                  new PropertyMetadata(null, MessengerChanged));
 
         public INotifyMessageSent Messenger
         {
@@ -27,7 +27,7 @@ namespace Elgraiv.TwilightTools.Mvvm.Interactivity
 
         private static void MessengerChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if(d is ShowDialogBehavior behavior)
+            if (d is ShowDialogBehavior behavior)
             {
                 if (e.OldValue is INotifyMessageSent oldMessagner)
                 {
@@ -40,7 +40,7 @@ namespace Elgraiv.TwilightTools.Mvvm.Interactivity
             }
         }
 
-        private Window _orner;
+        private Window? _orner;
 
         protected override void OnAttached()
         {
@@ -52,7 +52,7 @@ namespace Elgraiv.TwilightTools.Mvvm.Interactivity
             }
         }
 
-        private void DialogMessageReceived(object sender, DialogMessageEventArgs e)
+        private void DialogMessageReceived(object? sender, DialogMessageEventArgs e)
         {
             var viewModel = e.ViewModel;
             if (viewModel == null)
@@ -71,7 +71,7 @@ namespace Elgraiv.TwilightTools.Mvvm.Interactivity
             var dialog = new DialogWindow()
             {
                 DataContext = viewModel,
-                Owner=_orner,
+                Owner = _orner,
             };
             dialog.ShowDialog();
         }

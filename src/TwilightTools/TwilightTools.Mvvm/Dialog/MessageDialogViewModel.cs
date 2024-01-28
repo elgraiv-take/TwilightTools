@@ -9,7 +9,7 @@ namespace Elgraiv.TwilightTools.Mvvm.Dialog
 {
     public class MessageDialogViewModel : BindableBase, IDialogViewModel
     {
-        private string _title;
+        private string _title = string.Empty;
         public string Title
         {
             get => _title;
@@ -36,7 +36,7 @@ namespace Elgraiv.TwilightTools.Mvvm.Dialog
             set => SetProperty(ref _rejectText, value);
         }
 
-        private object _message;
+        private object _message = string.Empty;
         public object Message
         {
             get => _message;
