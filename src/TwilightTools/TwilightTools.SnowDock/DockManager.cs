@@ -22,7 +22,7 @@ public class DockManager
 
     public void RegisterPanelViewModel(IDockPanelViewModel panel)
     {
-        var content = new LayoutContent(panel.ContentId);
+        var content = new LayoutContent(panel);
         content.ExpectedPath = panel.PreferedPath;
         _registeredPanel.TryAdd(panel.ContentId, new ContentPanelRecord(content, panel));
 
@@ -41,12 +41,23 @@ public class DockManager
         {
             _layoutSystem.AddContent(content.Content.ExpectedPath ?? new LayoutPath(), content.Content);
         }
-
+        _layoutSystem.OptimizeLayout();
         _isBuilt = true;
         LayoutUpdated?.Invoke(this, new LayoutUpdatedEventArgs());
     }
 
+    internal IDockPanelViewModel? GetViewModel(string contentId)
+    {
+        if(_registeredPanel.TryGetValue(contentId,out var panel)){
+            return panel.ViewModel;
+        }
+        return null;
+    }
 
+    public void SerializeLayout(bool includeInternal, object args)
+    {
+
+    }
     public void RestoreLayout(LayoutData layout)
     {
         _layoutSystem.Reset();

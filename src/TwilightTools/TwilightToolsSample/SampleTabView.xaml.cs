@@ -13,16 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Elgraiv.TwilightToolsSample
+namespace Elgraiv.TwilightToolsSample;
+/// <summary>
+/// SampleTabView.xaml の相互作用ロジック
+/// </summary>
+public partial class SampleTabView : UserControl
 {
-    /// <summary>
-    /// MainWindow.xaml の相互作用ロジック
-    /// </summary>
-    public partial class MainWindow : Window
+    public SampleTabView()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

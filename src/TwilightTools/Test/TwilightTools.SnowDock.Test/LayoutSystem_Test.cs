@@ -7,12 +7,23 @@ namespace Elgraiv.TwilightTools.SnowDock.Test;
 [TestClass]
 public class LayoutSystem_Test
 {
+    private class PanelForTest(string id) : IDockPanelViewModel
+    {
+        public string Header => throw new NotImplementedException();
+
+        public bool IsVisible { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public string ContentId =>id;
+
+        public LayoutPath? PreferedPath => throw new NotImplementedException();
+    }
+
     [TestMethod]
     public void Layout_Test()
     {
         var system = new LayoutSystem();
         var count = 0;
-        var createId = () => $"Test_{count++:d03}";
+        var createId = () => new PanelForTest($"Test_{count++:d03}");
 
         system.AddContent(new LayoutPath([3, 1, 1, 0]), new LayoutContent(createId()));
         system.AddContent(new LayoutPath([3, 1, 1, 1]), new LayoutContent(createId()));

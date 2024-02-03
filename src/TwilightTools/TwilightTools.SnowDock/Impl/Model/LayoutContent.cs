@@ -8,10 +8,11 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
 {
     internal class LayoutContent
     {
-        public string Id { get; }
-        public LayoutContent(string id)
+        public string Id => ViewModel.ContentId;
+        public IDockPanelViewModel ViewModel { get; }
+        public LayoutContent(IDockPanelViewModel viewModel)
         {
-            Id = id;
+            ViewModel = viewModel;
         }
         public LayoutPath? ExpectedPath { get; set; }
 

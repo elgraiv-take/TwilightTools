@@ -12,6 +12,8 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model;
 internal abstract class LayoutBase : IIntermediateLayout
 {
     protected List<ILayout> Children { get; } = new();
+    IReadOnlyCollection<ILayout> IIntermediateLayout.Children => Children;
+
     protected LayoutBase? Parent { get; }
     protected int Level { get; private set; }
     public abstract LayoutOrientation Orientation { get; }

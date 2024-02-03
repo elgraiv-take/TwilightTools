@@ -13,16 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Elgraiv.TwilightToolsSample
+namespace Elgraiv.TwilightTools.SnowDock.Controls;
+public class PanelSplitter : Control
 {
-    /// <summary>
-    /// MainWindow.xaml の相互作用ロジック
-    /// </summary>
-    public partial class MainWindow : Window
+    static PanelSplitter()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(PanelSplitter), new FrameworkPropertyMetadata(typeof(PanelSplitter)));
+    }
+
+    public double PositionRate { get; set; }
+
+    public PanelSplitter()
+    {
     }
 }

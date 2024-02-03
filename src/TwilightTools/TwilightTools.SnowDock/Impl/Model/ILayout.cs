@@ -29,6 +29,9 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
     internal interface IIntermediateLayout: ILayout
     {
         public LayoutOrientation Orientation { get; }
+
+        public IReadOnlyCollection<ILayout> Children { get; }
+
 #if DEBUG
         public int Level { get; }
 #endif

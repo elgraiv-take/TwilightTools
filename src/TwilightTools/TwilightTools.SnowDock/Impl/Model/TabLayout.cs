@@ -11,6 +11,9 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
     internal class TabLayout : ILayout
     {
         private ObservableCollection<LayoutContent> _contents = new();
+        public ReadOnlyObservableCollection<LayoutContent> Contents { get; }
+
+        internal Guid InternalId { get; } = Guid.NewGuid();
 
         public IIntermediateLayout Parent { get; set; }
 
@@ -21,6 +24,7 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
         public TabLayout(IIntermediateLayout layout)
         {
             Parent = layout;
+            Contents = new(_contents);
         }
 
         public void AddContent(LayoutPath path, LayoutContent content)
