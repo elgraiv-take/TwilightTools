@@ -11,12 +11,12 @@ using System.Windows.Media;
 
 namespace Elgraiv.TwilightTools.SnowDock.Controls;
 
-internal class DockingAdorner : Adorner,IDisposable
+internal class DockingAdorner : Adorner, IDisposable
 {
     private AdornerLayer _layer;
     private DockingAdornerPanel _panel;
     private Size _size;
-    public DockingAdorner(BranchPanel adornedElement, DockingAdornerPanel panel,AdornerLayer layer) : base(adornedElement)
+    public DockingAdorner(BranchPanel adornedElement, DockingAdornerPanel panel, AdornerLayer layer) : base(adornedElement)
     {
         _layer = layer;
         _layer.Add(this);

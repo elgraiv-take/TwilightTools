@@ -26,7 +26,7 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
         Horisontal,
         Vertical,
     }
-    internal interface IIntermediateLayout: ILayout
+    internal interface IIntermediateLayout : ILayout
     {
         public event EventHandler? ReconstructRequested;
         public LayoutOrientation Orientation { get; }

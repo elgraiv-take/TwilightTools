@@ -60,7 +60,7 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
                 return;
             }
 
-            if(content.Tab is not null)
+            if (content.Tab is not null)
             {
                 content.Tab.RemoveContent(content);
             }
@@ -97,7 +97,7 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
 
             var path = new List<uint>();
 
-            while(parent is not null)
+            while (parent is not null)
             {
                 var index = parent.GetChildIndex(current);
                 if (index < 0)
@@ -124,7 +124,7 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
             writer.WriteLine($"{new string(' ', level * 2)}- Tab");
             foreach (var content in _contents)
             {
-                writer.WriteLine($"{new string(' ', (level+1) * 2)}+ {content.Id}");
+                writer.WriteLine($"{new string(' ', (level + 1) * 2)}+ {content.Id}");
             }
         }
 #endif

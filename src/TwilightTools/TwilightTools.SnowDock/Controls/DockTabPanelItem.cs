@@ -29,7 +29,7 @@ public class DockTabPanelItem : TabItem
     }
 
     private Point _startPoint;
-    private bool _isDraging = false; 
+    private bool _isDraging = false;
     protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
     {
         base.OnMouseLeftButtonDown(e);
@@ -67,12 +67,12 @@ public class DockTabPanelItem : TabItem
         ReleaseMouseCapture();
         _isDraging = false;
 
-        if(DataContext is not LayoutContent content)
+        if (DataContext is not LayoutContent content)
         {
             return;
         }
 
-        var dpi=VisualTreeHelper.GetDpi(this);
+        var dpi = VisualTreeHelper.GetDpi(this);
         var targetRect = new Rect(position.X / dpi.DpiScaleX, position.Y / dpi.DpiScaleY, _placed.ActualWidth, _placed.ActualHeight);
         _placed.Root.RequestFloatingWindow(targetRect, content);
 

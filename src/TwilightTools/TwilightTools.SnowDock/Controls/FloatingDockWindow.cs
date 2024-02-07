@@ -29,7 +29,7 @@ public class FloatingDockWindow : Window
     private LayoutSystem _layoutSystem;
     internal FloatingRoot WindowRootModel { get; }
     private DockRootPanel _rootPanel;
-    internal FloatingDockWindow(LayoutSystem layoutSystem,FloatingRoot windowRoot, DockRootPanel rootPanel)
+    internal FloatingDockWindow(LayoutSystem layoutSystem, FloatingRoot windowRoot, DockRootPanel rootPanel)
     {
         _layoutSystem = layoutSystem;
         WindowRootModel = windowRoot;

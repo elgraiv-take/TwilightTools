@@ -27,7 +27,7 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
         public event FloatingWindowEventHandler? FloatingWindowAdded;
         public event FloatingWindowEventHandler? FloatingWindowRemoved;
 
-        public void AddContent(LayoutPath path,LayoutContent content)
+        public void AddContent(LayoutPath path, LayoutContent content)
         {
             if (!_contents.TryAdd(content.Id, content))
             {
@@ -36,7 +36,7 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
             FloatingRoot? newFloating = null;
             if (path.IsFloating)
             {
-                if(!_floatings.TryGetValue(path.FloatId,out var floating))
+                if (!_floatings.TryGetValue(path.FloatId, out var floating))
                 {
                     floating = new FloatingRoot(path.FloatId);
                     newFloating = floating;
@@ -94,7 +94,7 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
             }
             if (oldId != 0)
             {
-                if(_floatings.TryGetValue(oldId, out var removing) && removing.Root.ContentCount <= 0)
+                if (_floatings.TryGetValue(oldId, out var removing) && removing.Root.ContentCount <= 0)
                 {
                     _floatings.Remove(oldId);
                     FloatingWindowRemoved?.Invoke(this, new FloatingWindowEventArgs(removing));
@@ -119,7 +119,7 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
         public void OptimizeLayout()
         {
             _root.OptimizeLayout();
-            foreach(var (_,floating) in _floatings)
+            foreach (var (_, floating) in _floatings)
             {
                 floating.OptimizeLayout();
             }

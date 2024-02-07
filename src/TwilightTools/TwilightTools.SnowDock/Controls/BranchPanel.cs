@@ -43,7 +43,7 @@ public class BranchPanel : FrameworkElement
     {
 
     }
-    internal BranchPanel(LayoutOrientation orientation,BranchPanel? rootBranch)
+    internal BranchPanel(LayoutOrientation orientation, BranchPanel? rootBranch)
     {
         _rootBranch = rootBranch ?? this;
         Orientation = orientation switch
@@ -75,12 +75,12 @@ public class BranchPanel : FrameworkElement
         get => _model;
         set
         {
-            if(_model is not null)
+            if (_model is not null)
             {
                 _model.ReconstructRequested -= OnLayoutReconstructRequested;
             }
             _model = value;
-            if(_model is not null)
+            if (_model is not null)
             {
                 _model.ReconstructRequested += OnLayoutReconstructRequested;
 
@@ -104,7 +104,7 @@ public class BranchPanel : FrameworkElement
         }
         ResetLayout();
         Model = layout;
-        foreach(var child in layout.Children)
+        foreach (var child in layout.Children)
         {
             switch (child)
             {
@@ -123,7 +123,7 @@ public class BranchPanel : FrameworkElement
                     break;
                 default:
                     break;
-                    
+
             }
         }
         _needResetLayout = false;
@@ -137,7 +137,7 @@ public class BranchPanel : FrameworkElement
 
     private void CleanTab(DockTabPanel tab)
     {
-        if(tab.Parent is BranchPanel branchPanel)
+        if (tab.Parent is BranchPanel branchPanel)
         {
             branchPanel._uieCollection.Remove(tab);
         }
@@ -173,7 +173,7 @@ public class BranchPanel : FrameworkElement
 
     internal void AddChildPanel(FrameworkElement panel)
     {
-        _uieCollection.Insert(0,panel);
+        _uieCollection.Insert(0, panel);
         var splitter = new PanelSplitter(Orientation, this);
         _uieCollection.Insert(_uieCollection.Count, splitter);
         _childrenPanels.Add(new(panel, splitter));
@@ -181,7 +181,7 @@ public class BranchPanel : FrameworkElement
         var step = 1.0 / _childrenPanels.Count;
 
         var offset = step;
-        foreach (var (_,child) in _childrenPanels)
+        foreach (var (_, child) in _childrenPanels)
         {
             child.PositionRate = offset;
             offset += step;
@@ -219,7 +219,7 @@ public class BranchPanel : FrameworkElement
         {
             var x = item.Bounds.X;
             var y = item.Bounds.Y;
-            if(Orientation == Orientation.Horizontal)
+            if (Orientation == Orientation.Horizontal)
             {
                 x += item.Bounds.Width;
             }
@@ -227,7 +227,7 @@ public class BranchPanel : FrameworkElement
             {
                 y += item.Bounds.Height;
             }
-            item.Splitter.Arrange(new Rect(new Point(x,y), splitterSize));
+            item.Splitter.Arrange(new Rect(new Point(x, y), splitterSize));
 
         }
         return finalSize;

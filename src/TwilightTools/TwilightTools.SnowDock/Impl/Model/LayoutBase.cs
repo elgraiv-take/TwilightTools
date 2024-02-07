@@ -23,7 +23,7 @@ internal abstract class LayoutBase : IIntermediateLayout
     public RootLayout Root { get; }
     public bool IsValidLayout { get; private set; } = false;
 
-    public LayoutBase(LayoutBase? parent,RootLayout root ,int level)
+    public LayoutBase(LayoutBase? parent, RootLayout root, int level)
     {
         Parent = parent;
         Level = level;
@@ -108,7 +108,7 @@ internal abstract class LayoutBase : IIntermediateLayout
         if (needSquash)
         {
             var newChildren = new List<ILayout>();
-            foreach(var child in Children)
+            foreach (var child in Children)
             {
                 if (child is LayoutBase intermediate && intermediate.ChildCount <= 1)
                 {
@@ -119,9 +119,9 @@ internal abstract class LayoutBase : IIntermediateLayout
                     newChildren.Add(child);
                 }
             }
-            foreach(var child in newChildren)
+            foreach (var child in newChildren)
             {
-                if(child is TabLayout tab)
+                if (child is TabLayout tab)
                 {
                     tab.Parent = this;
                 }
@@ -157,7 +157,7 @@ internal abstract class LayoutBase : IIntermediateLayout
         Debug.Assert(Children.Count == 1, $"{Children.Count}");
 
         var child = Children.First();
-        if( child is LayoutBase imd)
+        if (child is LayoutBase imd)
         {
             foreach (var gc in imd.Children)
             {
@@ -198,7 +198,7 @@ internal abstract class LayoutBase : IIntermediateLayout
     public void Debug_SerializeTo(TextWriter writer)
     {
         writer.WriteLine($"{new string(' ', Level * 2)}- {GetType().Name}");
-        foreach(var child in Children)
+        foreach (var child in Children)
         {
             child.Debug_SerializeTo(writer);
         }

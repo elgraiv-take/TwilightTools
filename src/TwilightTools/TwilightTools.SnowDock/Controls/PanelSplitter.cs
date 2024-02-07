@@ -14,18 +14,19 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Elgraiv.TwilightTools.SnowDock.Controls;
-public class PanelSplitter: Control
+public class PanelSplitter : Control
 {
-    private class PanelSplitterAdorner : Adorner,IDisposable
+    private class PanelSplitterAdorner : Adorner, IDisposable
     {
         private AdornerLayer _layer;
-        public PanelSplitterAdorner(UIElement adornedElement,AdornerLayer layer) : base(adornedElement)
+        public PanelSplitterAdorner(UIElement adornedElement, AdornerLayer layer) : base(adornedElement)
         {
             _layer = layer;
             _layer.Add(this);
         }
 
-        public void Dispose() {
+        public void Dispose()
+        {
             _layer.Remove(this);
         }
 
@@ -82,7 +83,7 @@ public class PanelSplitter: Control
             return;
         }
         var decorator = AdornerLayer.GetAdornerLayer(this);
-        if(decorator is not null)
+        if (decorator is not null)
         {
             _startPosition = e.GetPosition(this);
             var (min, max) = _parent.SplitterRange(this);
@@ -101,9 +102,9 @@ public class PanelSplitter: Control
 
     protected override void OnMouseMove(MouseEventArgs e)
     {
-        if(_adorner is not null)
+        if (_adorner is not null)
         {
-            if (e.LeftButton==MouseButtonState.Released)
+            if (e.LeftButton == MouseButtonState.Released)
             {
                 e.MouseDevice.OverrideCursor = null;
                 _adorner.Dispose();
@@ -147,7 +148,7 @@ public class PanelSplitter: Control
 
     protected override void OnMouseLeftButtonUp(MouseButtonEventArgs e)
     {
-        if(_adorner is not null)
+        if (_adorner is not null)
         {
             PositionRate = _adorner.NewPosition;
             _parent.InvalidateMeasure();

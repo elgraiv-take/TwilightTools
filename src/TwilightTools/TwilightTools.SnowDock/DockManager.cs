@@ -35,7 +35,7 @@ public class DockManager
     {
         _layoutSystem.Reset();
 
-        foreach(var (_,content) in _registeredPanel)
+        foreach (var (_, content) in _registeredPanel)
         {
             _layoutSystem.AddContent(content.Content.ExpectedPath ?? new LayoutPath(), content.Content);
         }
@@ -45,7 +45,8 @@ public class DockManager
 
     internal IDockPanelViewModel? GetViewModel(string contentId)
     {
-        if(_registeredPanel.TryGetValue(contentId,out var panel)){
+        if (_registeredPanel.TryGetValue(contentId, out var panel))
+        {
             return panel.ViewModel;
         }
         return null;
@@ -64,6 +65,6 @@ public class DockManager
 
         _isBuilt = true;
     }
-    
+
 
 }

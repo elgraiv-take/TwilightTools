@@ -11,4 +11,4 @@ using System.Windows.Markup;
 
 [assembly: InternalsVisibleTo("Elgraiv.TwilightTools.SnowDock.Test")]
 
-[assembly: ThemeInfo(ResourceDictionaryLocation.SourceAssembly,ResourceDictionaryLocation.SourceAssembly)]
+[assembly: ThemeInfo(ResourceDictionaryLocation.SourceAssembly, ResourceDictionaryLocation.SourceAssembly)]

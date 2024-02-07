@@ -34,7 +34,7 @@ public class DockTabPanel : TabControl
         {
             return;
         }
-        if(sender is DockTabPanel self)
+        if (sender is DockTabPanel self)
         {
             self.OnDockingOver(e);
         }
@@ -42,7 +42,7 @@ public class DockTabPanel : TabControl
 
     private void OnDockingOver(DockingEventArgs e)
     {
-        if(RootBranch is null)
+        if (RootBranch is null)
         {
             return;
         }
@@ -56,7 +56,7 @@ public class DockTabPanel : TabControl
     internal DockRootPanel Root { get; }
 
     internal BranchPanel? RootBranch { get; set; }
-    internal DockTabPanel(TabLayout model,DockRootPanel root)
+    internal DockTabPanel(TabLayout model, DockRootPanel root)
     {
         Model = model;
         Root = root;

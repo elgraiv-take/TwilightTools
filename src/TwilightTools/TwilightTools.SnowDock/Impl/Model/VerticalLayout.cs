@@ -14,7 +14,7 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
         public VerticalLayout(HorizontalLayout parent, RootLayout root, int level) : base(parent, root, level)
         {
         }
-        protected override LayoutBase CreateChild() => new HorizontalLayout(this,Root, Level + 1);
+        protected override LayoutBase CreateChild() => new HorizontalLayout(this, Root, Level + 1);
 
     }
 }

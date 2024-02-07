@@ -33,7 +33,7 @@ public class DockingAdornerPanel : Control
         base.OnApplyTemplate();
 
         var internalPanel = GetTemplateChild("PART_InternalBorder") as FrameworkElement;
-        if(internalPanel is not null)
+        if (internalPanel is not null)
         {
 
             internalPanel.Width = _tab.ActualWidth;

@@ -42,7 +42,7 @@ namespace Elgraiv.TwilightTools.Mvvm
         }
     }
 
-    public class DelegateCommand<T> : ICommand where T:notnull
+    public class DelegateCommand<T> : ICommand where T : notnull
     {
         private Action<T> _action;
         private Func<T, bool>? _predicate;

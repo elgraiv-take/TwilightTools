@@ -144,7 +144,7 @@ public class DockRootPanel : Control
      */
     internal void RequestFloatingWindow(Rect rect, LayoutContent content)
     {
-        if(DockManager is null)
+        if (DockManager is null)
         {
             return;
         }
@@ -179,7 +179,7 @@ public class DockRootPanel : Control
 
     private void OnFloatingWindowClosed(object? sender, EventArgs e)
     {
-        if(sender is FloatingDockWindow window)
+        if (sender is FloatingDockWindow window)
         {
             window.Closed -= OnFloatingWindowClosed;
             _floatingWindows.Remove(window);
@@ -203,9 +203,9 @@ public class DockRootPanel : Control
         bool isHit = false;
         var rootWindow = Window.GetWindow(this);
 
-        foreach(var window in _floatingWindows)
+        foreach (var window in _floatingWindows)
         {
-            if(source == window)
+            if (source == window)
             {
                 continue;
             }
@@ -223,14 +223,14 @@ public class DockRootPanel : Control
         if (isHit)
         {
             DockingTargetIcon? placeTarget = null;
-            if(_currentDockingTarget is not null)
+            if (_currentDockingTarget is not null)
             {
                 var layer = AdornerLayer.GetAdornerLayer(_currentDockingTarget);
                 if (layer is not null)
                 {
                     var point = layer.PointFromScreen(screenCoord);
                     var hitElement = layer.InputHitTest(point);
-                    if(hitElement is not null)
+                    if (hitElement is not null)
                     {
                         var args = new DockingTargetEventArgs()
                         {
@@ -274,7 +274,7 @@ public class DockRootPanel : Control
                 RoutedEvent = DockingOverEvent,
             };
             hitElement.RaiseEvent(args);
-            if(args.TargetPanel is not null)
+            if (args.TargetPanel is not null)
             {
                 SetCurrentDockingTarget(args.TargetPanel);
                 _currentDockingTab = args.TargetTab;
@@ -286,7 +286,7 @@ public class DockRootPanel : Control
 
     internal void EndHitCheck(FloatingRoot docking)
     {
-        if(_currentDockingTarget is not null && _targetPlace is not null)
+        if (_currentDockingTarget is not null && _targetPlace is not null)
         {
             PlaceTab(docking);
         }
@@ -300,7 +300,7 @@ public class DockRootPanel : Control
             return;
         }
         var content = docking.Root.Contents.FirstOrDefault();
-        if(content is null)
+        if (content is null)
         {
             return;//引っかからないはず
         }
@@ -309,7 +309,7 @@ public class DockRootPanel : Control
         {
             case DockingTargetPlace.Panel:
                 {
-                    if(_currentDockingTab is not null)
+                    if (_currentDockingTab is not null)
                     {
                         var targetPath = _currentDockingTab.Model.ComputeCurrentPath();
 

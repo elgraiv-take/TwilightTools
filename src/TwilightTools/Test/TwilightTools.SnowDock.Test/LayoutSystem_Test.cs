@@ -13,7 +13,7 @@ public class LayoutSystem_Test
 
         public bool IsVisible { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public string ContentId =>id;
+        public string ContentId => id;
 
         public LayoutPath? PreferedPath => throw new NotImplementedException();
     }
