@@ -11,6 +11,7 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model;
 
 internal abstract class LayoutBase : IIntermediateLayout
 {
+    public event EventHandler? ReconstructRequested;
     protected List<ILayout> Children { get; } = new();
     IReadOnlyCollection<ILayout> IIntermediateLayout.Children => Children;
 
@@ -18,14 +19,15 @@ internal abstract class LayoutBase : IIntermediateLayout
     protected int Level { get; private set; }
     public abstract LayoutOrientation Orientation { get; }
     public int ChildCount => Children.Count;
-
     ILayout? ILayout.Parent => Parent;
+    public RootLayout Root { get; }
+    public bool IsValidLayout { get; private set; } = false;
 
-
-    public LayoutBase(LayoutBase? parent, int level)
+    public LayoutBase(LayoutBase? parent,RootLayout root ,int level)
     {
         Parent = parent;
         Level = level;
+        Root = root;
     }
 
     public void AddContent(LayoutPath path, LayoutContent content)
@@ -50,7 +52,7 @@ internal abstract class LayoutBase : IIntermediateLayout
                     break;
                 default:
                     {
-                        var tab = new TabLayout(this);
+                        var tab = new TabLayout(this, Root);
                         Children[index] = tab;
                         tab.AddContent(path, content);
                     }
@@ -81,12 +83,17 @@ internal abstract class LayoutBase : IIntermediateLayout
                     break;
             }
         }
+        IsValidLayout = false;
     }
 
     protected abstract LayoutBase CreateChild();
 
     public void OptimizeLayout()
     {
+        if (IsValidLayout)
+        {
+            return;
+        }
         foreach (var child in Children)
         {
             child.OptimizeLayout();
@@ -122,6 +129,14 @@ internal abstract class LayoutBase : IIntermediateLayout
             Children.Clear();
             Children.AddRange(newChildren);
         }
+        IsValidLayout = true;
+        ReconstructRequested?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void RemoveTab(TabLayout tab)
+    {
+        Children.Remove(tab);
+        InvalidateLayout();
     }
 
     private void DeindentLevel(int level)
@@ -168,8 +183,16 @@ internal abstract class LayoutBase : IIntermediateLayout
         tab.Parent = this;
         Children.Add(tab);
     }
+
+    public void InvalidateLayout()
+    {
+        IsValidLayout = false;
+        Parent?.InvalidateLayout();
+    }
+
 #if DEBUG
     int IIntermediateLayout.Level => Level;
+
 
     public void Debug_SerializeTo(TextWriter writer)
     {
@@ -179,5 +202,6 @@ internal abstract class LayoutBase : IIntermediateLayout
             child.Debug_SerializeTo(writer);
         }
     }
+
 #endif
 }

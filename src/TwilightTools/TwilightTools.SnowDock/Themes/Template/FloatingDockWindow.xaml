@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Elgraiv.TwilightTools.SnowDock.Controls">
+
+    <ControlTemplate x:Key="FloatingDockWindowTemplate" TargetType="{x:Type controls:FloatingDockWindow}">
+        <AdornerDecorator>
+            <controls:BranchPanel x:Name="PART_RootBranch"
+                                  Width="auto"
+                                  Height="auto"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch" />
+        </AdornerDecorator>
+    </ControlTemplate>
+    <Style TargetType="{x:Type controls:FloatingDockWindow}">
+
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome CaptionHeight="0"
+                              ResizeBorderThickness="8"
+                              UseAeroCaptionButtons="False" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template" Value="{StaticResource FloatingDockWindowTemplate}" />
+    </Style>
+</ResourceDictionary>

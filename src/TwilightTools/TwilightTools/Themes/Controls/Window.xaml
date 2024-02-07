@@ -106,7 +106,9 @@
                                     </i:Interaction.Behaviors>
                                 </Button>
                             </Grid>
-                            <ContentPresenter Grid.Row="1" />
+                            <AdornerDecorator Grid.Row="1">
+                                <ContentPresenter />
+                            </AdornerDecorator>
                         </Grid>
                     </Border>
 

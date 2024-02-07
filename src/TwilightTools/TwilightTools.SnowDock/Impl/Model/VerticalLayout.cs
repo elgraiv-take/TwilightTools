@@ -11,10 +11,10 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
     internal class VerticalLayout : LayoutBase
     {
         public override LayoutOrientation Orientation => LayoutOrientation.Vertical;
-        public VerticalLayout(HorizontalLayout parent, int level) : base(parent, level)
+        public VerticalLayout(HorizontalLayout parent, RootLayout root, int level) : base(parent, root, level)
         {
         }
-        protected override LayoutBase CreateChild() => new HorizontalLayout(this, Level + 1);
+        protected override LayoutBase CreateChild() => new HorizontalLayout(this,Root, Level + 1);
 
     }
 }

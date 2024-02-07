@@ -21,15 +21,51 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
 
         public int ChildCount => _contents.Count;
 
-        public TabLayout(IIntermediateLayout layout)
+        public RootLayout Root { get; }
+
+        public event EventHandler? TabDeleting;
+
+        public TabLayout(IIntermediateLayout layout, RootLayout root)
         {
             Parent = layout;
             Contents = new(_contents);
+            Root = root;
+        }
+
+        public void RemoveContent(LayoutContent content)
+        {
+            if (_contents.Contains(content))
+            {
+                _contents.Remove(content);
+                content.Tab = null;
+                Root.RemoveContent(content);
+            }
+
+            if (_contents.Count < 1)
+            {
+                TabDeleting?.Invoke(this, EventArgs.Empty);
+                //タブの削除
+                Parent.RemoveTab(this);
+
+
+                Root.OptimizeLayout();
+            }
         }
 
         public void AddContent(LayoutPath path, LayoutContent content)
         {
             var index = path.TabIndex;
+
+            if (content.Tab == this)
+            {
+                return;
+            }
+
+            if(content.Tab is not null)
+            {
+                content.Tab.RemoveContent(content);
+            }
+
 
             if (index < 0)
             {

@@ -18,7 +18,6 @@ public class DockManager
 
     private bool _isBuilt = false;
 
-    internal event EventHandler<LayoutUpdatedEventArgs>? LayoutUpdated;
 
     public void RegisterPanelViewModel(IDockPanelViewModel panel)
     {
@@ -29,7 +28,6 @@ public class DockManager
         if (_isBuilt)
         {
             _layoutSystem.AddContent(content.ExpectedPath ?? new LayoutPath(), content);
-            LayoutUpdated?.Invoke(this, new LayoutUpdatedEventArgs());
         }
     }
 
@@ -43,7 +41,6 @@ public class DockManager
         }
         _layoutSystem.OptimizeLayout();
         _isBuilt = true;
-        LayoutUpdated?.Invoke(this, new LayoutUpdatedEventArgs());
     }
 
     internal IDockPanelViewModel? GetViewModel(string contentId)
@@ -66,7 +63,6 @@ public class DockManager
 
 
         _isBuilt = true;
-        LayoutUpdated?.Invoke(this, new LayoutUpdatedEventArgs());
     }
     
 

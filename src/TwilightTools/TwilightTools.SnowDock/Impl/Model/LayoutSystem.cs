@@ -5,15 +5,16 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
 {
-    public class FloatingWindowEventArgs : EventArgs
+    internal class FloatingWindowEventArgs(FloatingRoot target) : EventArgs
     {
-
+        public FloatingRoot TargetModel { get; } = target;
     }
 
-    public delegate void FloatingWindowEventHandler(object o, FloatingWindowEventArgs e);
+    internal delegate void FloatingWindowEventHandler(object o, FloatingWindowEventArgs e);
 
     internal class LayoutSystem
     {
@@ -32,13 +33,13 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
             {
                 return;
             }
-            var newFloating = false;
+            FloatingRoot? newFloating = null;
             if (path.IsFloating)
             {
                 if(!_floatings.TryGetValue(path.FloatId,out var floating))
                 {
                     floating = new FloatingRoot();
-                    newFloating = true;
+                    newFloating = floating;
                     _floatings[path.FloatId] = floating;
                 }
                 floating.AddContent(path, content);
@@ -48,10 +49,36 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
                 _root.AddContent(path, content);
             }
 
-            if (newFloating)
+            if (newFloating is not null)
             {
-                FloatingWindowAdded?.Invoke(this, new FloatingWindowEventArgs());
+                FloatingWindowAdded?.Invoke(this, new FloatingWindowEventArgs(newFloating));
             }
+        }
+
+        public void RequestFloating(LayoutContent content, Rect rect)
+        {
+            var newFloating = new FloatingRoot()
+            {
+                WindowRect = rect,
+            };
+            var floatId = 1u;
+            while (_floatings.ContainsKey(floatId))
+            {
+                floatId++;
+            }
+            var path = new LayoutPath()
+            {
+                FloatId = floatId
+            };
+            _floatings.Add(floatId, newFloating);
+            newFloating.AddContent(new LayoutPath(), content);
+            newFloating.OptimizeLayout();
+            FloatingWindowAdded?.Invoke(this, new FloatingWindowEventArgs(newFloating));
+        }
+
+        public void RequestDock(LayoutContent content)
+        {
+
         }
 
         public void RemoveContent(LayoutContent content)
@@ -63,7 +90,7 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
             var removeFloating = false;
             if (removeFloating)
             {
-                FloatingWindowRemoved?.Invoke(this, new FloatingWindowEventArgs());
+                FloatingWindowRemoved?.Invoke(this, new FloatingWindowEventArgs(default!));
             }
         }
 

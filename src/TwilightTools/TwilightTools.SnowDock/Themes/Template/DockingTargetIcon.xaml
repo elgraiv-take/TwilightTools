@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Elgraiv.TwilightTools.SnowDock.Controls">
+
+    <ControlTemplate x:Key="DockingTargetIconTemplate" TargetType="{x:Type controls:DockingTargetIcon}">
+        <Border Background="{TemplateBinding Background}" />
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type controls:DockingTargetIcon}">
+        <Setter Property="Template" Value="{StaticResource DockingTargetIconTemplate}" />
+        <Setter Property="Background" Value="LightGreen" />
+        <Style.Triggers>
+            <Trigger Property="IsDockingTarget" Value="True">
+                <Setter Property="Background" Value="Green" />
+            </Trigger>
+            <!--
+            <Trigger Property="TargetPlace" Value="PanelLeft">
+                <Setter Property="Template" Value="{StaticResource DockingTargetIconTemplate}" />
+            </Trigger>
+            -->
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

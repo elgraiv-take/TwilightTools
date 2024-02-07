@@ -28,9 +28,15 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
     }
     internal interface IIntermediateLayout: ILayout
     {
+        public event EventHandler? ReconstructRequested;
         public LayoutOrientation Orientation { get; }
 
         public IReadOnlyCollection<ILayout> Children { get; }
+
+        public bool IsValidLayout { get; }
+
+        public void InvalidateLayout();
+        public void RemoveTab(TabLayout tab);
 
 #if DEBUG
         public int Level { get; }

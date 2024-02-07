@@ -5,5 +5,8 @@
         <ResourceDictionary Source="/Elgraiv.TwilightTools.SnowDock;component/Themes/Template/PanelSplitter.xaml" />
         <ResourceDictionary Source="/Elgraiv.TwilightTools.SnowDock;component/Themes/Template/DockRootPanel.xaml" />
         <ResourceDictionary Source="/Elgraiv.TwilightTools.SnowDock;component/Themes/Template/DockTabPanel.xaml" />
+        <ResourceDictionary Source="/Elgraiv.TwilightTools.SnowDock;component/Themes/Template/FloatingDockWindow.xaml" />
+        <ResourceDictionary Source="/Elgraiv.TwilightTools.SnowDock;component/Themes/Template/DockingAdornerPanel.xaml" />
+        <ResourceDictionary Source="/Elgraiv.TwilightTools.SnowDock;component/Themes/Template/DockingTargetIcon.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

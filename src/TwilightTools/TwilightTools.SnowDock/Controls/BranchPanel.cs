@@ -37,12 +37,15 @@ public class BranchPanel : FrameworkElement
     private List<ChildElement> _childrenPanels = new();
     //private List<PanelSplitter> _splitters = new();
 
-    public BranchPanel() : this(LayoutOrientation.Horisontal)
+    private BranchPanel _rootBranch;
+
+    public BranchPanel() : this(LayoutOrientation.Horisontal, null)
     {
 
     }
-    internal BranchPanel(LayoutOrientation orientation)
+    internal BranchPanel(LayoutOrientation orientation,BranchPanel? rootBranch)
     {
+        _rootBranch = rootBranch ?? this;
         Orientation = orientation switch
         {
             LayoutOrientation.Horisontal => Orientation.Horizontal,
@@ -66,33 +69,112 @@ public class BranchPanel : FrameworkElement
       */
     }
 
+    private IIntermediateLayout? _model;
+    private IIntermediateLayout? Model
+    {
+        get => _model;
+        set
+        {
+            if(_model is not null)
+            {
+                _model.ReconstructRequested -= OnLayoutReconstructRequested;
+            }
+            _model = value;
+            if(_model is not null)
+            {
+                _model.ReconstructRequested += OnLayoutReconstructRequested;
+
+            }
+        }
+    }
+
+    private void OnLayoutReconstructRequested(object? sender, EventArgs e)
+    {
+        _needResetLayout = true;
+    }
+
+    private bool _needResetLayout = true;
+
+
     internal void SetLayout(IIntermediateLayout layout, DockRootPanel root)
     {
+        if (Model == layout && !_needResetLayout)
+        {
+            return;
+        }
+        ResetLayout();
+        Model = layout;
         foreach(var child in layout.Children)
         {
             switch (child)
             {
                 case IIntermediateLayout imd:
                     {
-                        var panel = new BranchPanel(Orientation == Orientation.Horizontal ? LayoutOrientation.Vertical : LayoutOrientation.Horisontal);
+                        var panel = new BranchPanel(Orientation == Orientation.Horizontal ? LayoutOrientation.Vertical : LayoutOrientation.Horisontal, _rootBranch);
                         panel.SetLayout(imd, root);
                         AddChildPanel(panel);
                     }
                     break;
                 case TabLayout tab:
-                    AddChildPanel(root.GetOrCreateTab(tab));
+                    var tabPanel = root.GetOrCreateTab(tab);
+                    CleanTab(tabPanel);
+                    tabPanel.RootBranch = _rootBranch;
+                    AddChildPanel(tabPanel);
                     break;
                 default:
                     break;
                     
             }
         }
+        _needResetLayout = false;
+    }
+
+    private void ResetLayout()
+    {
+        _uieCollection.Clear();
+        _childrenPanels.Clear();
+    }
+
+    private void CleanTab(DockTabPanel tab)
+    {
+        if(tab.Parent is BranchPanel branchPanel)
+        {
+            branchPanel._uieCollection.Remove(tab);
+        }
+    }
+
+    private DockTabPanel? _adornerTarget;
+    private DockingAdorner? _dockingAdorner;
+
+    internal void SetAdorner(DockTabPanel panel)
+    {
+        if (_adornerTarget == panel)
+        {
+            return;
+        }
+        _dockingAdorner?.Dispose();
+        var layer = AdornerLayer.GetAdornerLayer(this);
+        if (layer is null)
+        {
+            return;
+        }
+        var adornerPanel = new DockingAdornerPanel(_rootBranch, panel);
+        adornerPanel.Width = ActualWidth;
+        adornerPanel.Height = ActualHeight;
+        _dockingAdorner = new DockingAdorner(_rootBranch, adornerPanel, layer);
+        _adornerTarget = panel;
+    }
+
+    internal void ClearAdorner()
+    {
+        _adornerTarget = null;
+        _dockingAdorner?.Dispose();
     }
 
     internal void AddChildPanel(FrameworkElement panel)
     {
         _uieCollection.Insert(0,panel);
-        var splitter = new PanelSplitter();
+        var splitter = new PanelSplitter(Orientation, this);
         _uieCollection.Insert(_uieCollection.Count, splitter);
         _childrenPanels.Add(new(panel, splitter));
 
@@ -177,12 +259,28 @@ public class BranchPanel : FrameworkElement
         return availableSize;
     }
 
+    internal (double Min, double Max) SplitterRange(PanelSplitter splitter)
+    {
+        if (_childrenPanels.Count < 2)
+        {
+            return default;
+        }
+        var index = _childrenPanels.FindIndex((child) => child.Splitter == splitter);
+        if (index < 0)
+        {
+            return default;
+        }
+        var min = index == 0 ? 0.0 : _childrenPanels[index - 1].Splitter.PositionRate;
+        var max = index < _childrenPanels.Count - 1 ? _childrenPanels[index + 1].Splitter.PositionRate : 1.0;
+        return (min, max);
+    }
+
     private void ComputeChildRect(Size total, ref Rect bounds, double offset, double pos, bool splitter = true)
     {
         if (Orientation == Orientation.Horizontal)
         {
             bounds.X = total.Width * offset;
-            bounds.Width = total.Width * (pos - offset) - (splitter ? SplitterWidth : 0.0);
+            bounds.Width = Math.Max(0.0, total.Width * (pos - offset) - (splitter ? SplitterWidth : 0.0));
 
             bounds.Y = 0.0;
             bounds.Height = total.Height;
@@ -194,7 +292,7 @@ public class BranchPanel : FrameworkElement
             bounds.Width = total.Width;
 
             bounds.Y = total.Height * offset;
-            bounds.Height = total.Height * (pos - offset) - (splitter ? SplitterWidth : 0.0);
+            bounds.Height = Math.Max(0.0, total.Height * (pos - offset) - (splitter ? SplitterWidth : 0.0));
         }
     }
 
