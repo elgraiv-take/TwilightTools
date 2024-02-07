@@ -10,7 +10,7 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
 {
     internal interface ILayout
     {
-        public ILayout? Parent { get; }
+        public IIntermediateLayout? Parent { get; }
 
         public int ChildCount { get; }
         public void AddContent(LayoutPath path, LayoutContent content);
@@ -37,6 +37,8 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
 
         public void InvalidateLayout();
         public void RemoveTab(TabLayout tab);
+
+        public int GetChildIndex(ILayout child);
 
 #if DEBUG
         public int Level { get; }

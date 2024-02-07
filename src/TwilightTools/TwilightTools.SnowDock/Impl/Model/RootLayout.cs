@@ -17,11 +17,14 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
 
         public event EventHandler? LayoutRequested;
 
+        public uint FloatId { get; }
+
         public int ContentCount => _contents.Count;
 
-        public RootLayout()
+        public RootLayout(uint floatingId)
         {
             _layout = new(this);
+            FloatId = floatingId;
         }
 
         public void AddContent(LayoutPath path, LayoutContent content)

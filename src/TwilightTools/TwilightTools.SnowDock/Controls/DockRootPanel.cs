@@ -56,14 +56,17 @@ public class DockRootPanel : Control
         {
             oldDockManager.LayoutSystem.Root.LayoutRequested -= OnMainLayoutRequeste;
             oldDockManager.LayoutSystem.FloatingWindowAdded -= OnFloatingWindowAdded;
+            oldDockManager.LayoutSystem.FloatingWindowRemoved -= OnFloatingWindowRemoved;
         }
         if (e.NewValue is DockManager newDockManager)
         {
             newDockManager.LayoutSystem.Root.LayoutRequested += OnMainLayoutRequeste;
             newDockManager.LayoutSystem.FloatingWindowAdded += OnFloatingWindowAdded;
+            newDockManager.LayoutSystem.FloatingWindowRemoved += OnFloatingWindowRemoved;
         }
         ResetLayout();
     }
+
 
     private void OnMainLayoutRequeste(object? sender, EventArgs e)
     {
@@ -76,6 +79,11 @@ public class DockRootPanel : Control
         CreateWindow(e.TargetModel);
     }
 
+    private void OnFloatingWindowRemoved(object o, FloatingWindowEventArgs e)
+    {
+        var removingWindow = _floatingWindows.FirstOrDefault((window) => window.WindowRootModel == e.TargetModel);
+        removingWindow?.Close();
+    }
     private Dictionary<Guid, DockTabPanel> _tabs = new();
 
     internal DockTabPanel GetOrCreateTab(TabLayout tabLayout)
@@ -287,12 +295,12 @@ public class DockRootPanel : Control
 
     private void PlaceTab(FloatingRoot docking)
     {
-        if (_targetPlace is null)
+        if (_targetPlace is null || DockManager is null)
         {
             return;
         }
         var content = docking.Root.Contents.FirstOrDefault();
-        if(content is not null)
+        if(content is null)
         {
             return;//引っかからないはず
         }
@@ -303,6 +311,9 @@ public class DockRootPanel : Control
                 {
                     if(_currentDockingTab is not null)
                     {
+                        var targetPath = _currentDockingTab.Model.ComputeCurrentPath();
+
+                        DockManager.LayoutSystem.RequestDock(targetPath, content);
                     }
                 }
                 break;

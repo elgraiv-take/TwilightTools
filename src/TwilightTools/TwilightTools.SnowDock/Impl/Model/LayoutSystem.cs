@@ -18,7 +18,7 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
 
     internal class LayoutSystem
     {
-        private RootLayout _root = new();
+        private RootLayout _root = new(0);
         public RootLayout Root => _root;
         private Dictionary<uint, FloatingRoot> _floatings = new();
 
@@ -38,7 +38,7 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
             {
                 if(!_floatings.TryGetValue(path.FloatId,out var floating))
                 {
-                    floating = new FloatingRoot();
+                    floating = new FloatingRoot(path.FloatId);
                     newFloating = floating;
                     _floatings[path.FloatId] = floating;
                 }
@@ -57,15 +57,15 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
 
         public void RequestFloating(LayoutContent content, Rect rect)
         {
-            var newFloating = new FloatingRoot()
-            {
-                WindowRect = rect,
-            };
             var floatId = 1u;
             while (_floatings.ContainsKey(floatId))
             {
                 floatId++;
             }
+            var newFloating = new FloatingRoot(floatId)
+            {
+                WindowRect = rect,
+            };
             var path = new LayoutPath()
             {
                 FloatId = floatId
@@ -76,9 +76,30 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
             FloatingWindowAdded?.Invoke(this, new FloatingWindowEventArgs(newFloating));
         }
 
-        public void RequestDock(LayoutContent content)
+        public void RequestDock(LayoutPath path, LayoutContent content)
         {
-
+            var oldId = content.Tab?.Root.FloatId ?? 0;
+            if (path.IsFloating)
+            {
+                if (_floatings.TryGetValue(path.FloatId, out var floating))
+                {
+                    floating.AddContent(path, content);
+                    floating.OptimizeLayout();
+                }
+            }
+            else
+            {
+                _root.AddContent(path, content);
+                _root.OptimizeLayout();
+            }
+            if (oldId != 0)
+            {
+                if(_floatings.TryGetValue(oldId, out var removing) && removing.Root.ContentCount <= 0)
+                {
+                    _floatings.Remove(oldId);
+                    FloatingWindowRemoved?.Invoke(this, new FloatingWindowEventArgs(removing));
+                }
+            }
         }
 
         public void RemoveContent(LayoutContent content)

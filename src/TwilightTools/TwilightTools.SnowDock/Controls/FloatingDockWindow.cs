@@ -27,12 +27,12 @@ public class FloatingDockWindow : Window
     }
 
     private LayoutSystem _layoutSystem;
-    private FloatingRoot _windowRoot;
+    internal FloatingRoot WindowRootModel { get; }
     private DockRootPanel _rootPanel;
     internal FloatingDockWindow(LayoutSystem layoutSystem,FloatingRoot windowRoot, DockRootPanel rootPanel)
     {
         _layoutSystem = layoutSystem;
-        _windowRoot = windowRoot;
+        WindowRootModel = windowRoot;
         _rootPanel = rootPanel;
 
     }
@@ -55,7 +55,7 @@ public class FloatingDockWindow : Window
             return;
         }
 
-        _rootBranch.SetLayout(_windowRoot.Root.Layout, _rootPanel);
+        _rootBranch.SetLayout(WindowRootModel.Root.Layout, _rootPanel);
     }
 
     private bool _moving = false;
@@ -100,11 +100,12 @@ public class FloatingDockWindow : Window
     {
         ReleaseMouseCapture();
         _moving = false;
-        _rootPanel.EndHitCheck(_windowRoot);
+        _rootPanel.EndHitCheck(WindowRootModel);
     }
 
     protected override void OnClosed(EventArgs e)
     {
-        _windowRoot.CloseAll();
+        WindowRootModel.CloseAll();
+        base.OnClosed(e);
     }
 }

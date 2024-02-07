@@ -11,7 +11,7 @@ internal class PlaceholderLayout : ILayout
 {
     public static readonly PlaceholderLayout Instance = new();
 
-    public ILayout? Parent => null;
+    public IIntermediateLayout? Parent => null;
 
     public int ChildCount => 0;
 

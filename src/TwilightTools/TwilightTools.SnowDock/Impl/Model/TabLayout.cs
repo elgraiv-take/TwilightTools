@@ -17,13 +17,12 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
 
         public IIntermediateLayout Parent { get; set; }
 
-        ILayout? ILayout.Parent => Parent;
-
         public int ChildCount => _contents.Count;
 
         public RootLayout Root { get; }
 
         public event EventHandler? TabDeleting;
+
 
         public TabLayout(IIntermediateLayout layout, RootLayout root)
         {
@@ -91,6 +90,28 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
             content.Tab = this;
         }
 
+        public LayoutPath ComputeCurrentPath()
+        {
+            ILayout current = this;
+            IIntermediateLayout? parent = Parent;
+
+            var path = new List<uint>();
+
+            while(parent is not null)
+            {
+                var index = parent.GetChildIndex(current);
+                if (index < 0)
+                {
+                    return new LayoutPath();
+                }
+                path.Add((uint)index);
+                current = parent;
+                parent = parent.Parent;
+            }
+            path.Reverse();
+
+            return new LayoutPath(path) { FloatId = Root.FloatId };
+        }
         public void OptimizeLayout()
         {
         }

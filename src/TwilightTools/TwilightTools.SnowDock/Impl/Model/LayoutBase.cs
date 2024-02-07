@@ -19,7 +19,7 @@ internal abstract class LayoutBase : IIntermediateLayout
     protected int Level { get; private set; }
     public abstract LayoutOrientation Orientation { get; }
     public int ChildCount => Children.Count;
-    ILayout? ILayout.Parent => Parent;
+    IIntermediateLayout? ILayout.Parent => Parent;
     public RootLayout Root { get; }
     public bool IsValidLayout { get; private set; } = false;
 
@@ -29,6 +29,7 @@ internal abstract class LayoutBase : IIntermediateLayout
         Level = level;
         Root = root;
     }
+    public int GetChildIndex(ILayout child) => Children.IndexOf(child);
 
     public void AddContent(LayoutPath path, LayoutContent content)
     {
@@ -202,6 +203,7 @@ internal abstract class LayoutBase : IIntermediateLayout
             child.Debug_SerializeTo(writer);
         }
     }
+
 
 #endif
 }

@@ -9,9 +9,14 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
 {
     internal class FloatingRoot
     {
-        private RootLayout _root = new();
+        private RootLayout _root;
         public RootLayout Root => _root;
         public Rect WindowRect { get; set; }
+
+        public FloatingRoot(uint id)
+        {
+            _root = new(id);
+        }
 
         public void AddContent(LayoutPath path, LayoutContent content)
         {
