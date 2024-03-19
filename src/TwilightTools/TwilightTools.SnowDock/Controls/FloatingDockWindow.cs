@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,9 +20,11 @@ namespace Elgraiv.TwilightTools.SnowDock.Controls;
 
 
 [TemplatePart(Name = ElementNameRootBranch, Type = typeof(BranchPanel))]
+[TemplatePart(Name = ElementWindowHeaderBranch, Type = typeof(FrameworkElement))]
 public class FloatingDockWindow : Window
 {
     private const string ElementNameRootBranch = "PART_RootBranch";
+    private const string ElementWindowHeaderBranch = "PART_WindowHeader";
     static FloatingDockWindow()
     {
         DefaultStyleKeyProperty.OverrideMetadata(typeof(FloatingDockWindow), new FrameworkPropertyMetadata(typeof(FloatingDockWindow)));
@@ -39,13 +43,30 @@ public class FloatingDockWindow : Window
 
 
     private BranchPanel? _rootBranch;
+    private FrameworkElement? _header;
     public override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
 
         _rootBranch = GetTemplateChild(ElementNameRootBranch) as BranchPanel;
+        _header = GetTemplateChild(ElementWindowHeaderBranch) as FrameworkElement;
+
+        if(_header is not null)
+        {
+            _header.MouseLeftButtonDown += OnHeaderMouseLeftButtonDown;
+        }
 
         ResetLayout();
+    }
+
+    private void OnHeaderMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+
+        var start = PointToScreen(Mouse.GetPosition(this));
+        var dpi = VisualTreeHelper.GetDpi(this);
+        var offset = new Point(Left - start.X / dpi.DpiScaleX, Top - start.Y / dpi.DpiScaleY);
+        SetMoveTarget(offset);
+        e.Handled = true;
     }
 
     private void ResetLayout()
@@ -59,12 +80,13 @@ public class FloatingDockWindow : Window
     }
 
     private bool _moving = false;
-    private Point _start;
+    private Point _offset;
 
-    internal void SetMoveTarget()
+    internal void SetMoveTarget(Point offset)
     {
         _moving = CaptureMouse();
-        _start = PointToScreen(Mouse.GetPosition(this));
+
+        _offset = offset;
     }
 
 
@@ -79,8 +101,8 @@ public class FloatingDockWindow : Window
             }
             var current = PointToScreen(e.GetPosition(this));
             var dpi = VisualTreeHelper.GetDpi(this);
-            Left = current.X / dpi.DpiScaleX;
-            Top = current.Y / dpi.DpiScaleY;
+            Left = current.X / dpi.DpiScaleX + _offset.X;
+            Top = current.Y / dpi.DpiScaleY + _offset.Y;
 
             _rootPanel.HitCheck(this, current);
         }

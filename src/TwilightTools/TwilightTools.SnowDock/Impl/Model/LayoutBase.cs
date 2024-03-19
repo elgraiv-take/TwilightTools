@@ -15,7 +15,7 @@ internal abstract class LayoutBase : IIntermediateLayout
     protected List<ILayout> Children { get; } = new();
     IReadOnlyCollection<ILayout> IIntermediateLayout.Children => Children;
 
-    protected LayoutBase? Parent { get; }
+    protected LayoutBase? Parent { get; private set; }
     protected int Level { get; private set; }
     public abstract LayoutOrientation Orientation { get; }
     public int ChildCount => Children.Count;
@@ -140,16 +140,29 @@ internal abstract class LayoutBase : IIntermediateLayout
         InvalidateLayout();
     }
 
-    private void DeindentLevel(int level)
+    private void ShiftLevel(int level)
     {
-        Level -= level;
+        Level += level;
         foreach (var child in Children)
         {
             if (child is LayoutBase imd)
             {
-                imd.DeindentLevel(level);
+                imd.ShiftLevel(level);
             }
         }
+    }
+
+    protected void ReplaceParent(LayoutBase newParnt)
+    {
+        var newLevel = newParnt.Level + 1;
+        Parent = newParnt;
+        ShiftLevel(newLevel - Level);
+    }
+
+    public void AddLayout(LayoutBase child)
+    {
+        Children.Add(child);
+        child.ReplaceParent(this);
     }
 
     public void SquashChildren(ICollection<ILayout> target)
@@ -163,7 +176,8 @@ internal abstract class LayoutBase : IIntermediateLayout
             {
                 if (gc is LayoutBase imd2)
                 {
-                    imd2.DeindentLevel(2);
+                    imd2.ShiftLevel(-2);
+                    imd2.Parent = Parent;
                     target.Add(imd2);
                 }
                 else

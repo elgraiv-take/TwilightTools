@@ -76,22 +76,82 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
             FloatingWindowAdded?.Invoke(this, new FloatingWindowEventArgs(newFloating));
         }
 
-        public void RequestDock(LayoutPath path, LayoutContent content)
+        public void RequestDock(DockingTargetPlace targetPlace,TabLayout targetTab, LayoutContent content)
         {
-            var oldId = content.Tab?.Root.FloatId ?? 0;
-            if (path.IsFloating)
+
+            RootLayout root;
+            
+            if (targetTab.Root.FloatId != 0)
             {
-                if (_floatings.TryGetValue(path.FloatId, out var floating))
+                if (_floatings.TryGetValue(targetTab.Root.FloatId, out var floating))
                 {
-                    floating.AddContent(path, content);
-                    floating.OptimizeLayout();
+                    root = floating.Root;
+                }
+                else
+                {
+                    return;
                 }
             }
             else
             {
-                _root.AddContent(path, content);
-                _root.OptimizeLayout();
+                root = _root;
             }
+
+
+            var oldId = content.Tab?.Root.FloatId ?? 0;
+            switch (targetPlace)
+            {
+                case DockingTargetPlace.Panel:
+                    {
+                        root.AddContent(targetTab.ComputeCurrentPath(), content);
+                    }
+                    break;
+                case DockingTargetPlace.PanelLeft:
+                    {
+
+                    }
+                    break;
+                case DockingTargetPlace.PanelTop:
+                    {
+
+                    }
+                    break;
+                case DockingTargetPlace.PanelRight:
+                    {
+
+                    }
+                    break;
+                case DockingTargetPlace.PanelBottom:
+                    {
+
+                    }
+                    break;
+                case DockingTargetPlace.RootLeft:
+                    {
+                        root.InsertLeft(content);
+                    }
+                    break;
+                case DockingTargetPlace.RootTop:
+                    {
+                        root.InsertTop(content);
+                    }
+                    break;
+                case DockingTargetPlace.RootRight:
+                    {
+                        root.InsertRight(content);
+                    }
+                    break;
+                case DockingTargetPlace.RootBottom:
+                    {
+                        root.InsertBottom(content);
+                    }
+                    break;
+                default:
+                    return;
+            }
+
+            root.OptimizeLayout();
+
             if (oldId != 0)
             {
                 if (_floatings.TryGetValue(oldId, out var removing) && removing.Root.ContentCount <= 0)

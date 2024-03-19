@@ -16,18 +16,6 @@ using Elgraiv.TwilightTools.SnowDock.Impl;
 
 namespace Elgraiv.TwilightTools.SnowDock.Controls;
 
-public enum DockingTargetPlace
-{
-    Panel,
-    PanelLeft,
-    PanelTop,
-    PanelRight,
-    PanelBottom,
-    RootLeft,
-    RootTop,
-    RootRight,
-    RootBottom,
-}
 public class DockingTargetIcon : Control
 {
     static DockingTargetIcon()

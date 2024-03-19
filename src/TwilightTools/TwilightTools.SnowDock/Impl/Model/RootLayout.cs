@@ -43,12 +43,45 @@ namespace Elgraiv.TwilightTools.SnowDock.Impl.Model
             _contents.Remove(content);
         }
 
+        public void InsertLeft(LayoutContent content)
+        {
+            _contents.Add(content);
+            Layout.InsertLeft(content);
+        }
+
+        public void InsertRight(LayoutContent content)
+        {
+            _contents.Add(content);
+            Layout.InsertRight(content);
+        }
+
+        internal void InsertTop(LayoutContent content)
+        {
+            _contents.Add(content);
+            var (vertical, horizontal) = _layout.InsertLevel();
+
+            _layout = horizontal;
+            vertical.InsertTop(content);
+        }
+        internal void InsertBottom(LayoutContent content)
+        {
+
+            _contents.Add(content);
+            var (vertical, horizontal) = _layout.InsertLevel();
+
+            _layout = horizontal;
+            vertical.InsertBottom(content);
+        }
+
+
+
 #if DEBUG
         public void Debug_SerializeTo(TextWriter writer)
         {
             writer.WriteLine($"* RootLayout");
             _layout.Debug_SerializeTo(writer);
         }
+
 #endif
     }
 }

@@ -24,3 +24,16 @@ public class DockingTargetEventArgs : RoutedEventArgs
 }
 public delegate void DockingTargetEventHandler(object? sender, DockingTargetEventArgs e);
 
+
+public enum DockingTargetPlace
+{
+    Panel,
+    PanelLeft,
+    PanelTop,
+    PanelRight,
+    PanelBottom,
+    RootLeft,
+    RootTop,
+    RootRight,
+    RootBottom,
+}

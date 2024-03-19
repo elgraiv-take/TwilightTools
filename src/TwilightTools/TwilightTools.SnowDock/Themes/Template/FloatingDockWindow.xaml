@@ -3,13 +3,26 @@
                     xmlns:controls="clr-namespace:Elgraiv.TwilightTools.SnowDock.Controls">
 
     <ControlTemplate x:Key="FloatingDockWindowTemplate" TargetType="{x:Type controls:FloatingDockWindow}">
-        <AdornerDecorator>
-            <controls:BranchPanel x:Name="PART_RootBranch"
-                                  Width="auto"
-                                  Height="auto"
-                                  HorizontalAlignment="Stretch"
-                                  VerticalAlignment="Stretch" />
-        </AdornerDecorator>
+        <Grid Background="DarkBlue">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Border x:Name="PART_WindowHeader" Background="Transparent" />
+            </Grid>
+            <AdornerDecorator Grid.Row="1">
+                <controls:BranchPanel x:Name="PART_RootBranch"
+                                      Width="auto"
+                                      Height="auto"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch" />
+            </AdornerDecorator>
+
+        </Grid>
     </ControlTemplate>
     <Style TargetType="{x:Type controls:FloatingDockWindow}">
 

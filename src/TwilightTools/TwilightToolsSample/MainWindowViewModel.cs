@@ -21,11 +21,20 @@ namespace Elgraiv.TwilightToolsSample
 
             DockManager = new DockManager();
 
-            DockManager.RegisterPanelViewModel(new SampleTabViewModel("TabA", "TabA") { PreferedPath = new LayoutPath() });
-            DockManager.RegisterPanelViewModel(new SampleTabViewModel("TabB", "TabB") { PreferedPath = new LayoutPath([1, 0]) });
-            DockManager.RegisterPanelViewModel(new SampleTabViewModel("TabC", "TabC") { PreferedPath = new LayoutPath([1, 0]) });
-            DockManager.RegisterPanelViewModel(new SampleTabViewModel("TabD", "TabD") { PreferedPath = new LayoutPath([1, 1]) });
-            DockManager.RegisterPanelViewModel(new SampleTabViewModel("TabE", "TabE") { PreferedPath = new LayoutPath([2]) });
+            DockManager.RegisterPanelViewModel(new SampleTabViewModel("TabA", "TabA") { PreferedPath = new LayoutPath([3, 1, 1, 0]) });
+            DockManager.RegisterPanelViewModel(new SampleTabViewModel("TabB", "TabB") { PreferedPath = new LayoutPath([3, 1, 1, 1]) });
+            DockManager.RegisterPanelViewModel(new SampleTabViewModel("TabC", "TabC") { PreferedPath = new LayoutPath([3, 1, 2, 2]) });
+            DockManager.RegisterPanelViewModel(new SampleTabViewModel("TabD", "TabD") { PreferedPath = new LayoutPath([0]) });
+            DockManager.RegisterPanelViewModel(new SampleTabViewModel("TabE", "TabE") { PreferedPath = new LayoutPath([0], 0) });
+            DockManager.RegisterPanelViewModel(new SampleTabViewModel("TabF", "TabF") { PreferedPath = new LayoutPath([1]) });
+            DockManager.RegisterPanelViewModel(new SampleTabViewModel("TabG", "TabG") { PreferedPath = new LayoutPath([1, 0]) });
+            DockManager.RegisterPanelViewModel(new SampleTabViewModel("TabH", "TabH") { PreferedPath = new LayoutPath([1, 1]) });
+            DockManager.RegisterPanelViewModel(new SampleTabViewModel("TabI", "TabI") { PreferedPath = new LayoutPath([1, 2, 0]) });
+            DockManager.RegisterPanelViewModel(new SampleTabViewModel("TabJ", "TabJ") { PreferedPath = new LayoutPath([1, 2, 0]) });
+            DockManager.RegisterPanelViewModel(new SampleTabViewModel("TabK", "TabK") { PreferedPath = new LayoutPath([1, 2]) });
+            DockManager.RegisterPanelViewModel(new SampleTabViewModel("TabL", "TabL") { PreferedPath = new LayoutPath([1, 2, 1]) });
+            DockManager.RegisterPanelViewModel(new SampleTabViewModel("TabM", "TabM") { PreferedPath = new LayoutPath([2]) });
+
 
             DockManager.BuildLayout();
 

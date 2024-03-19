@@ -174,7 +174,7 @@ public class DockRootPanel : Control
         window.Closed += OnFloatingWindowClosed;
 
         window.Show();
-        window.SetMoveTarget();
+        window.SetMoveTarget(new Point(-10, -10));
     }
 
     private void OnFloatingWindowClosed(object? sender, EventArgs e)
@@ -305,36 +305,9 @@ public class DockRootPanel : Control
             return;//引っかからないはず
         }
 
-        switch (_targetPlace.TargetPlace)
+        if (_currentDockingTab is not null)
         {
-            case DockingTargetPlace.Panel:
-                {
-                    if (_currentDockingTab is not null)
-                    {
-                        var targetPath = _currentDockingTab.Model.ComputeCurrentPath();
-
-                        DockManager.LayoutSystem.RequestDock(targetPath, content);
-                    }
-                }
-                break;
-            case DockingTargetPlace.PanelLeft:
-                break;
-            case DockingTargetPlace.PanelTop:
-                break;
-            case DockingTargetPlace.PanelRight:
-                break;
-            case DockingTargetPlace.PanelBottom:
-                break;
-            case DockingTargetPlace.RootLeft:
-                break;
-            case DockingTargetPlace.RootTop:
-                break;
-            case DockingTargetPlace.RootRight:
-                break;
-            case DockingTargetPlace.RootBottom:
-                break;
-            default:
-                break;
+            DockManager.LayoutSystem.RequestDock(_targetPlace.TargetPlace, _currentDockingTab.Model, content);
         }
     }
 
